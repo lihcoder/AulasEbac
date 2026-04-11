@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC</title>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- 
+Nesta tarefa, você irá desenvolver uma calculadora de IMC (Índice de Massa Corporal), que é uma ferramenta simples para avaliar se uma pessoa está dentro de uma faixa de peso considerada saudável.
+
+Requisitos:
+Crie um arquivo HTML com a seguinte estrutura:
+
+Dois campos de input: um para o peso (em quilogramas) e outro para a altura (em metros).
+Um botão com o texto "Calcular".
+Uma tag <p> para exibir o valor do IMC calculado.
+Uma tag <p> adicional para exibir a classificação do IMC (ex: "Abaixo do peso", "Peso normal", "Sobrepeso", etc.).
+
+Funcionalidades JavaScript
+Ao clicar no botão "Calcular", o JavaScript deve:
+Capturar os valores inseridos nos inputs (peso e altura).
+Calcular o IMC usando a fórmula:
+IMC = peso / (altura x altura).
+Exibir o valor do IMC na tag <p> correspondente.
+
+
+Estilização (Opcional)
+Use CSS para estilizar a página, deixando-a mais atraente e amigável. Você pode adicionar cores, bordas, espaçamentos e até mesmo animações simples.
+Dicas
+Lembre-se que o document.getElementById(“ID”) retorna o elemento completo e que você precisa usar o .value no final para obter os valores inseridos nos inputs.
+
+Utilize parseFloat() ou Number() para converter os valores dos inputs em números.
+-->
+
+
+<header>
+    <h1>Calculadora IMC</h1>
+    <span>Vamos calcular a sua massa corporal?</span>
+</header>
+
+<main class="calculator-main">
+    <div class="calculator-form-section">
+        <form action="" class="calculator-form">
+            <label for="peso">Digite seu peso:</label>
+            <input type="number" id="peso">
+
+            <label for="altura">Digite sua altura:</label>
+            <input type="number" id="altura">
+
+            <p id="valorCalculado"></p>
+            <p id="classificacaoIMC"></p>
+            
+            <button type="button" id="calcularIMC">Calcular</button>
+        </form>
+    </div>
+</main>
+</body>
+
+</html>
