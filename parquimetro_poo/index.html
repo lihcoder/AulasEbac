@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parquímetro Digital</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="machine-wrap">
+    <div class="machine">
+
+      <!-- Cabeçalho -->
+      <div class="machine-header">
+        <div class="brand-row">
+          <span class="brand-icon">🅿</span>
+          <div>
+            <div class="brand-name">PARQUÍMETRO</div>
+            <div class="brand-sub">SISTEMA DIGITAL v2.0</div>
+          </div>
+        </div>
+        <div class="status-dot" id="statusDot"></div>
+      </div>
+
+      <!-- Display principal -->
+      <div class="display-panel">
+        <div class="display-label">VALOR INSERIDO</div>
+        <div class="display-value" id="displayValue">R$ 0,00</div>
+        <div class="display-time" id="displayTime">--:-- h</div>
+      </div>
+
+      <!-- Tabela de tarifas -->
+      <div class="tariff-board">
+        <div class="tariff-title">TABELA DE TARIFAS</div>
+        <div class="tariff-grid">
+          <div class="tariff-row">
+            <span class="tariff-range">R$ 1,00 – R$ 1,99</span>
+            <span class="tariff-time">30 min</span>
+          </div>
+          <div class="tariff-row">
+            <span class="tariff-range">R$ 2,00 – R$ 2,99</span>
+            <span class="tariff-time">1 hora</span>
+          </div>
+          <div class="tariff-row">
+            <span class="tariff-range">R$ 3,00 – R$ 4,99</span>
+            <span class="tariff-time">2 horas</span>
+          </div>
+          <div class="tariff-row">
+            <span class="tariff-range">R$ 5,00 – R$ 7,99</span>
+            <span class="tariff-time">4 horas</span>
+          </div>
+          <div class="tariff-row">
+            <span class="tariff-range">R$ 8,00 ou mais</span>
+            <span class="tariff-time">Dia inteiro</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input de moedas -->
+      <div class="coin-section">
+        <div class="coin-label">INSIRA O VALOR (R$)</div>
+        <div class="input-row">
+          <span class="currency-sign">R$</span>
+          <input type="number" id="valorInput" class="coin-input"
+                 placeholder="0,00" min="0" step="0.01" />
+        </div>
+        <button class="btn-confirmar" id="btnConfirmar" onclick="calcular()">
+          <span class="btn-icon">▶</span> CALCULAR
+        </button>
+      </div>
+
+      <!-- Resultado -->
+      <div class="result-panel" id="resultPanel">
+        <div class="result-inner" id="resultInner">
+          <!-- preenchido via JS -->
+        </div>
+      </div>
+
+      <!-- Rodapé da máquina -->
+      <div class="machine-footer">
+        <div class="footer-lights">
+          <span class="light" id="light1"></span>
+          <span class="light" id="light2"></span>
+          <span class="light" id="light3"></span>
+        </div>
+        <div class="footer-text">PREFEITURA MUNICIPAL — 24h</div>
+      </div>
+
+    </div>
+
+    <!-- Sombra / base da máquina -->
+    <div class="machine-base"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
