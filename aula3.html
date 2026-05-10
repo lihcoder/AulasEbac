@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstração srcset e sizes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Painel de Informações em Tempo Real */
+        .info-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .info-panel h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 1.5em;
+        }
+
+        /* Seção de Exemplo */
+        .example {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .example-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .example-header h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .example-header p {
+            opacity: 0.9;
+        }
+
+        .example-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        /* Coluna do Código */
+        .code-column {
+            background: #1e1e1e;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .code-column h4 {
+            color: #4ec9b0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #d4d4d4;
+        }
+
+        .tag { color: #569cd6; }
+        .attr { color: #9cdcfe; }
+        .value { color: #ce9178; }
+        .comment { color: #6a9955; }
+
+        /* Coluna do Resultado */
+        .result-column {
+            background: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .result-column h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .image-container {
+            background: white;
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Info da Imagem Carregada */
+        .loaded-info {
+            background: white;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .loaded-info strong {
+            color: #4caf50;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .loaded-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* Controles Interativos */
+        .controls {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .controls h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .slider-container {
+            margin-bottom: 20px;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+        }
+
+        .slider-value {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        /* Responsivo */
+        @media (max-width: 968px) {
+            .example-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-column {
+                border-bottom: 2px solid #667eea;
+            }
+        }
+
+        /* Animações */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .highlight {
+            animation: pulse 1s ease-in-out;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .badge.warning {
+            background: #ff9800;
+        }
+
+        .badge.info {
+            background: #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Demonstração Interativa: srcset e sizes</h1>
+
+        <!-- Painel de Informações em Tempo Real -->
+        <div class="info-panel">
+            <h2>📊 Informações da Sua Tela (Tempo Real)</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span>Largura da Janela</span>
+                    <strong id="windowWidth">-</strong>
+                </div>
+                <div class="info-item">
+                    <span>Altura da Janela</span>
+                    <strong id="windowHeight">-</strong>
+                </div>
+                <div class="info-item">
+                    <span>Densidade de Pixels</span>
+                    <strong id="pixelRatio">-</strong>
+                </div>
+                <div class="info-item">
+                    <span>Tipo de Dispositivo</span>
+                    <strong id="deviceType">-</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles Interativos -->
+        <div class="controls">
+            <h3>🎛️ Simule Diferentes Tamanhos de Tela</h3>
+            <div class="slider-container">
+                <label>
+                    Largura da Área de Visualização: 
+                    <span class="slider-value" id="widthValue">100%</span>
+                </label>
+                <input type="range" id="widthSlider" min="320" max="1920" value="1920" step="10">
+            </div>
+        </div>
+
+        <!-- EXEMPLO 1: Hero Image Full Width -->
+        <div class="example">
+            <div class="example-header">
+                <h3>🎯 Exemplo 1: Imagem Hero (Largura Total)</h3>
+                <p>A imagem ocupa 100% da largura da tela em todos os dispositivos</p>
+            </div>
+            <div class="example-content">
+                <div class="code-column">
+                    <h4>&lt;/&gt; Código HTML</h4>
+                    <pre><code><span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="value">"hero-fallback.jpg"</span>
+  
+  <span class="attr">srcset</span>=<span class="value">"
+    hero-small.jpg 600w,
+    hero-medium.jpg 1200w,
+    hero-large.jpg 1800w,
+    hero-xlarge.jpg 2400w"</span>
+  
+  <span class="attr">sizes</span>=<span class="value">"100vw"</span>
+  
+  <span class="attr">alt</span>=<span class="value">"Paisagem montanhosa"</span>
+<span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- sizes="100vw" significa:
+     A imagem sempre ocupa 
+     100% da largura da viewport --&gt;</span></code></pre>
+                </div>
+                <div class="result-column">
+                    <h4>✨ Resultado Visual</h4>
+                    <div class="image-container">
+                        <img 
+                            id="heroImage"
+                            src="https://picsum.photos/600/400?random=1" 
+                            srcset="
+                                https://picsum.photos/600/400?random=1 600w,
+                                https://picsum.photos/1200/800?random=1 1200w,
+                                https://picsum.photos/1800/1200?random=1 1800w,
+                                https://picsum.photos/2400/1600?random=1 2400w
+                            "
+                            sizes="100vw"
+                            alt="Imagem Hero"
+                        >
+                    </div>
+                    <div class="loaded-info" id="heroInfo">
+                        <strong>📦 Imagem Carregada:</strong>
+                        <p>Carregando informações...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXEMPLO 2: Grid de Produtos -->
+        <div class="example">
+            <div class="example-header">
+                <h3>🛍️ Exemplo 2: Grid de Produtos (Responsivo)</h3>
+                <p>Mobile: 1 coluna (100%) | Tablet: 2 colunas (50%) | Desktop: 3 colunas (33%)</p>
+            </div>
+            <div class="example-content">
+                <div class="code-column">
+                    <h4>&lt;/&gt; Código HTML</h4>
+                    <pre><code><span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="value">"produto.jpg"</span>
+  
+  <span class="attr">srcset</span>=<span class="value">"
+    produto-300.jpg 300w,
+    produto-600.jpg 600w,
+    produto-900.jpg 900w,
+    produto-1200.jpg 1200w"</span>
+  
+  <span class="attr">sizes</span>=<span class="value">"
+    (max-width: 640px) 100vw,
+    (max-width: 1024px) 50vw,
+    33vw"</span>
+  
+  <span class="attr">alt</span>=<span class="value">"Produto"</span>
+<span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Lógica do sizes:
+     📱 Tela até 640px: ocupa 100%
+     💻 Tela até 1024px: ocupa 50%
+     🖥️ Tela maior: ocupa 33% --&gt;</span></code></pre>
+                </div>
+                <div class="result-column">
+                    <h4>✨ Resultado Visual</h4>
+                    <div class="image-container">
+                        <img 
+                            id="productImage"
+                            src="https://picsum.photos/300/300?random=2" 
+                            srcset="
+                                https://picsum.photos/300/300?random=2 300w,
+                                https://picsum.photos/600/600?random=2 600w,
+                                https://picsum.photos/900/900?random=2 900w,
+                                https://picsum.photos/1200/1200?random=2 1200w
+                            "
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            alt="Produto"
+                        >
+                    </div>
+                    <div class="loaded-info" id="productInfo">
+                        <strong>📦 Imagem Carregada:</strong>
+                        <p>Carregando informações...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXEMPLO 3: Sidebar Thumbnail -->
+        <div class="example">
+            <div class="example-header">
+                <h3>📌 Exemplo 3: Thumbnail de Sidebar (Tamanho Fixo)</h3>
+                <p>A imagem sempre tem 250px de largura, independente da tela</p>
+            </div>
+            <div class="example-content">
+                <div class="code-column">
+                    <h4>&lt;/&gt; Código HTML</h4>
+                    <pre><code><span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="value">"thumb.jpg"</span>
+  
+  <span class="attr">srcset</span>=<span class="value">"
+    thumb-250.jpg 250w,
+    thumb-500.jpg 500w"</span>
+  
+  <span class="attr">sizes</span>=<span class="value">"250px"</span>
+  
+  <span class="attr">alt</span>=<span class="value">"Miniatura"</span>
+  <span class="attr">style</span>=<span class="value">"max-width: 250px;"</span>
+<span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- sizes="250px" significa:
+     A imagem sempre ocupa 250px
+     
+     Útil para sidebars,
+     avatares e thumbnails --&gt;</span></code></pre>
+                </div>
+                <div class="result-column">
+                    <h4>✨ Resultado Visual</h4>
+                    <div class="image-container">
+                        <img 
+                            id="thumbImage"
+                            src="https://picsum.photos/250/250?random=3" 
+                            srcset="
+                                https://picsum.photos/250/250?random=3 250w,
+                                https://picsum.photos/500/500?random=3 500w
+                            "
+                            sizes="250px"
+                            alt="Thumbnail"
+                            style="max-width: 250px;"
+                        >
+                    </div>
+                    <div class="loaded-info" id="thumbInfo">
+                        <strong>📦 Imagem Carregada:</strong>
+                        <p>Carregando informações...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXEMPLO 4: Retina Display -->
+        <div class="example">
+            <div class="example-header">
+                <h3>✨ Exemplo 4: Imagens para Telas Retina (Density Descriptors)</h3>
+                <p>Usa "x" em vez de "w" para especificar a densidade de pixels</p>
+            </div>
+            <div class="example-content">
+                <div class="code-column">
+                    <h4>&lt;/&gt; Código HTML</h4>
+                    <pre><code><span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="value">"logo.png"</span>
+  
+  <span class="attr">srcset</span>=<span class="value">"
+    logo.png 1x,
+    logo@2x.png 2x,
+    logo@3x.png 3x"</span>
+  
+  <span class="attr">alt</span>=<span class="value">"Logo"</span>
+  <span class="attr">style</span>=<span class="value">"width: 200px;"</span>
+<span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Density Descriptors:
+     1x = telas normais
+     2x = telas Retina (iPhone, MacBook)
+     3x = telas de alta densidade
+     
+     Não precisa de sizes! --&gt;</span></code></pre>
+                </div>
+                <div class="result-column">
+                    <h4>✨ Resultado Visual</h4>
+                    <div class="image-container">
+                        <img 
+                            id="retinaImage"
+                            src="https://picsum.photos/200/200?random=4" 
+                            srcset="
+                                https://picsum.photos/200/200?random=4 1x,
+                                https://picsum.photos/400/400?random=4 2x,
+                                https://picsum.photos/600/600?random=4 3x
+                            "
+                            alt="Logo Retina"
+                            style="width: 200px;"
+                        >
+                    </div>
+                    <div class="loaded-info" id="retinaInfo">
+                        <strong>📦 Imagem Carregada:</strong>
+                        <p>Densidade da sua tela: <span id="currentDensity">-</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Atualizar informações da tela em tempo real
+        function updateScreenInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ratio = window.devicePixelRatio || 1;
+            
+            document.getElementById('windowWidth').textContent = width + 'px';
+            document.getElementById('windowHeight').textContent = height + 'px';
+            document.getElementById('pixelRatio').textContent = ratio + 'x';
+            
+            // Determinar tipo de dispositivo
+            let deviceType = '🖥️ Desktop';
+            if (width < 640) deviceType = '📱 Mobile';
+            else if (width < 1024) deviceType = '💻 Tablet';
+            
+            document.getElementById('deviceType').textContent = deviceType;
+            document.getElementById('currentDensity').textContent = ratio + 'x';
+        }
+
+        // Função para detectar qual imagem foi carregada
+        function getLoadedImageInfo(img, infoElementId) {
+            img.addEventListener('load', function() {
+                const currentSrc = img.currentSrc || img.src;
+                const naturalWidth = img.naturalWidth;
+                const naturalHeight = img.naturalHeight;
+                const displayWidth = img.width;
+                const displayHeight = img.height;
+                
+                // Extrair nome do arquivo da URL
+                const fileName = currentSrc.split('/').pop();
+                
+                const infoHTML = `
+                    <strong>📦 Imagem Carregada:</strong>
+                    <p><strong>URL:</strong> ${currentSrc}</p>
+                    <p><strong>Dimensões Reais:</strong> ${naturalWidth}x${naturalHeight}px</p>
+                    <p><strong>Exibida como:</strong> ${displayWidth}x${displayHeight}px</p>
+                    <p><strong>Largura da Janela:</strong> ${window.innerWidth}px</p>
+                    <p class="badge info">Economia: ${calculateSavings(naturalWidth)}%</p>
+                `;
+                
+                document.getElementById(infoElementId).innerHTML = infoHTML;
+            });
+        }
+
+        // Calcular economia de dados
+        function calculateSavings(loadedWidth) {
+            const maxWidth = 2400;
+            const savings = ((maxWidth - loadedWidth) / maxWidth * 100).toFixed(0);
+            return savings > 0 ? savings : 0;
+        }
+
+        // Configurar listeners para todas as imagens
+        getLoadedImageInfo(document.getElementById('heroImage'), 'heroInfo');
+        getLoadedImageInfo(document.getElementById('productImage'), 'productInfo');
+        getLoadedImageInfo(document.getElementById('thumbImage'), 'thumbInfo');
+        getLoadedImageInfo(document.getElementById('retinaImage'), 'retinaInfo');
+
+        // Slider de largura
+        const widthSlider = document.getElementById('widthSlider');
+        const widthValue = document.getElementById('widthValue');
+        
+        widthSlider.addEventListener('input', function() {
+            const value = this.value;
+            widthValue.textContent = value + 'px';
+            
+            // Simular redimensionamento (visual)
+            document.querySelectorAll('.image-container').forEach(container => {
+                container.style.maxWidth = value + 'px';
+                container.classList.add('highlight');
+                setTimeout(() => container.classList.remove('highlight'), 1000);
+            });
+        });
+
+        // Atualizar informações ao redimensionar
+        window.addEventListener('resize', updateScreenInfo);
+        
+        // Atualizar ao carregar
+        updateScreenInfo();
+
+        // Recarregar imagens ao redimensionar (demonstração)
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Forçar recálculo do srcset
+                document.querySelectorAll('img[srcset]').forEach(img => {
+                    const srcset = img.getAttribute('srcset');
+                    img.removeAttribute('srcset');
+                    setTimeout(() => img.setAttribute('srcset', srcset), 10);
+                });
+            }, 500);
+        });
+
+        // Log no console para debug
+        console.log('%c🖼️ Demonstração srcset e sizes', 'font-size: 20px; font-weight: bold; color: #667eea;');
+        console.log('Redimensione a janela para ver as imagens mudarem!');
+        console.log('Largura atual:', window.innerWidth + 'px');
+        console.log('Densidade de pixels:', window.devicePixelRatio + 'x');
+    </script>
+</body>
+</html>
