@@ -1,0 +1,171 @@
+/* ─── Layout ─────────────────────────────────────────── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ─── Header ─────────────────────────────────────────── */
+    .app-header {
+      text-align: center;
+      padding-bottom: 8px;
+    }
+
+    .app-header__eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--primary-lt);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .app-header__title {
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+
+    .app-header__title span {
+      color: var(--primary);
+    }
+
+    .app-header__sub {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* ─── Card (surface) ─────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .card__title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── Seção de lista ─────────────────────────────────── */
+    .list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .list-header__title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ─── Lista de clientes ──────────────────────────────── */
+    #lista-clientes {
+      display: none;            /* troque para "flex" via JS quando houver clientes */
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ─── Responsivo ─────────────────────────────────────── */
+    @media (max-width: 520px) {
+      #form-cliente { grid-template-columns: 1fr; }
+      .field--full  { grid-column: 1; }
+      .card         { padding: 20px; }
+    }
+
+
+    /* ─── Card de cliente ────────────────────────────────── */
+    /*
+     * Estrutura esperada de cada item gerado via JS:
+     *
+     * <div class="cliente-item">
+     *   <div class="cliente-item__info">
+     *     <span class="cliente-item__avatar">L</span>          ← inicial do nome
+     *     <div>
+     *       <p class="cliente-item__nome">Lirius Silva</p>
+     *       <p class="cliente-item__detalhe">lirius@email.com · (85) 99999-0000</p>
+     *     </div>
+     *   </div>
+     *   <button class="btn btn--danger btn-excluir" data-id="ID_DO_CRUDCRUD">
+     *     Excluir
+     *   </button>
+     * </div>
+     */
+
+    .cliente-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color .2s;
+    }
+
+    .cliente-item:hover { border-color: var(--primary); }
+
+    .cliente-item__info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .cliente-item__avatar {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .cliente-item__nome {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cliente-item__detalhe {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clientes — CrudCrud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/base/css/reset/reset.css">
+  <link rel="stylesheet" href="/base/css/tokens/tokens.css">
+  <link rel="stylesheet" href="/base/bundle/bundle.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Cabeçalho -->
+    <header class="app-header">
+      <span class="app-header__eyebrow">CrudCrud API</span>
+      <h1 class="app-header__title">Gestão de <span>Clientes</span></h1>
+      <p class="app-header__sub">Cadastre, consulte e remova clientes em tempo real.</p>
+    </header>
+
+    <!-- Formulário de cadastro -->
+    <section class="card">
+      <h2 class="card__title">Novo cliente</h2>
+
+      <form id="form-cliente" novalidate>
+
+        <div class="field field--full">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Ex.: Maria Oliveira"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div class="field field--full">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Ex.: maria@email.com"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">
+            <!-- ícone inline simples -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Cadastrar cliente
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- Lista de clientes -->
+    <section class="card">
+
+      <div class="list-header">
+        <h2 class="list-header__title">Clientes cadastrados</h2>
+        <span id="contagem-clientes">0</span>
+      </div>
+
+      <!-- Estado vazio (visível por padrão; ocultar via JS quando houver itens) -->
+      <div id="mensagem-vazia">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <p>Nenhum cliente cadastrado ainda.<br/>Use o formulário acima para começar.</p>
+      </div>
+
+      <!-- Container de clientes (oculto por padrão; exibir via JS quando houver itens) -->
+      <div id="lista-clientes">
+        <!--
+          Itens serão inseridos aqui via JS no formato:
+
+          <div class="cliente-item">
+            <div class="cliente-item__info">
+              <span class="cliente-item__avatar">M</span>
+              <div>
+                <p class="cliente-item__nome">Maria Oliveira</p>
+                <p class="cliente-item__detalhe">maria@email.com · (85) 99999-0000</p>
+              </div>
+            </div>
+            <button class="btn btn--danger btn-excluir" data-id="ID_CRUDCRUD">
+              Excluir
+            </button>
+          </div>
+        -->
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Toast de feedback (controlado via JS) -->
+  <div id="toast"></div>
+
+  <script src="/scripts/js/crudcrud.js" defer></script>
+
+</body>
+</html>

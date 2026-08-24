@@ -1,0 +1,16 @@
+/* ─── Tokens ─────────────────────────────────────────── */
+    :root {
+      --bg:          #F4F3FF;
+      --surface:     #FFFFFF;
+      --border:      #E2DFFF;
+      --primary:     #5B4CF5;
+      --primary-hov: #4639E0;
+      --primary-lt:  #EEECff;
+      --danger:      #E53E3E;
+      --danger-hov:  #C53030;
+      --danger-lt:   #FFF5F5;
+      --text:        #1A1733;
+      --text-muted:  #6B6B8A;
+      --radius:      12px;
+      --shadow:      0 2px 12px rgba(91, 76, 245, 0.08);
+    }

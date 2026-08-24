@@ -1,0 +1,40 @@
+/* ─── Botões ─────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .18s, transform .12s, box-shadow .18s;
+      white-space: nowrap;
+    }
+
+    .btn:active { transform: scale(.97); }
+
+    .btn--primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 24px;
+    }
+
+    .btn--primary:hover {
+      background: var(--primary-hov);
+      box-shadow: 0 4px 14px rgba(91, 76, 245, 0.3);
+    }
+
+    .btn--danger {
+      background: var(--danger-lt);
+      color: var(--danger);
+      padding: 7px 14px;
+      font-size: 13px;
+    }
+
+    .btn--danger:hover {
+      background: var(--danger);
+      color: #fff;
+    }
