@@ -20,29 +20,27 @@
                 <div class="drawer-body mb-2 md:mb-0">
                     <ul class="nav navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="http://localhost/ebac/projectBootstrap/view/index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre Nós</a>
+                            <a class="nav-link" href="#sobre">Sobre Nós</a>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
                                 Serviços
                             </button>
                             <div class="menu">
-                                <a class="menu-item" href="#">Action</a>
-                                <a class="menu-item" href="#">Another action</a>
-                                <hr class="menu-divider">
-                                <a class="menu-item" href="#">Something else here</a>
+                                <a class="menu-item" href="#servico-1">Pigmentação de barba</a>
+                                <a class="menu-item" href="#servico-2">Camuflagem de Fios Brancos</a>
                             </div>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Depoimentos</a>
+                            <a class="nav-link" href="#depoimentos">Depoimentos</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contato</a>
+                            <a class="nav-link" href="#contato">Contato</a>
                         </li>
                     </ul>
                 </div>

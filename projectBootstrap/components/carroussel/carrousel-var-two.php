@@ -4,7 +4,7 @@
     <!-- Cabecalho da secao e controles de navegacao. -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h6 class="h3 mb-1">Depoimentos</h6>
+            <h6 class="h3 mb-1" id="depoimentos">Depoimentos</h6>
             <p class="text-secondary mb-0">
                 Veja o que as pessoas dizem sobre nós.
             </p>
