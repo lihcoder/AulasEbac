@@ -2,10 +2,10 @@
 <div class="sm:col-10 mx-auto">
 
     <!-- Titulo da secao de contato. -->
-    <h6 class="h3 mb-4">Entre em contato</h6>
+    <h6 class="h3 mb-4" id="contato">Entre em contato</h6>
 
     <!-- Campos preenchidos pelo visitante. -->
-    <form class="vstack gap-3" novalidate>
+    <form class="vstack gap-3">
 
         <div>
             <label for="fieldName" class="form-label">
