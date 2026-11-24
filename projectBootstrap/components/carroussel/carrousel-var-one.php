@@ -9,7 +9,7 @@
                 <p class="fg-emphasis-secondary mb-3">Premiada no Nordeste como um dos melhores salões
                     especializado
                     em cachos.</p>
-                <div><a class="btn-solid theme-primary" href="#">Agendar</a></div>
+                <div><a class="btn-solid theme-primary" href="#contato">Agendar</a></div>
             </div>
         </div>
         <!-- Destaque para a campanha de Black Friday. -->
@@ -20,7 +20,7 @@
                 <p class="fg-emphasis-secondary mb-3">Corte de cabelo + Barba + Hidratação Intensiva apenas por
                     R$
                     230,00</p>
-                <div><a class="btn-solid theme-success" href="#">Quero agendar o meu agora!</a></div>
+                <div><a class="btn-solid theme-success" href="#contato">Quero agendar o meu agora!</a></div>
             </div>
         </div>
         <!-- Destaque para a oportunidade de trabalho. -->
@@ -38,12 +38,12 @@
         <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselExampleContent" data-bs-slide="prev"
             style="--bs-carousel-control-icon-width: 1rem;">
             <span class="carousel-icon-prev" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Anterior</span>
         </button>
         <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselExampleContent" data-bs-slide="next"
             style="--bs-carousel-control-icon-width: 1rem;">
             <span class="carousel-icon-next" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Próximo</span>
         </button>
     </div>
 </div>
