@@ -1,4 +1,3 @@
-
 const CRUDCRUD_API_KEY = '1383056f858e43c38bf86e818fb8349c'; //a minha chave
 const API_URL = `https://crudcrud.com/api/${CRUDCRUD_API_KEY}/clientes`; //acessando dentro do meu cofre particular
 
@@ -20,9 +19,7 @@ function mostrarToast(mensagem, tipo = 'sucesso') {
 
 // Desenha a lista de clientes na tela a partir do array vindo da API
 function renderizarClientes(clientes) {
-  listaClientes.innerHTML = ''; /*aqui a partir que essa função renderizarClientes for chamada,
-  o listaClientes vai ser puxado e escrito no html, que aqui estará vazio pq quem preenche
-  vai ser essa função.*/
+  listaClientes.innerHTML = ''; /*aqui a partir que essa função renderizarClientes for chamada, o listaClientes vai ser puxado e escrito no html, que aqui estará vazio pq quem preenche vai ser essa função.*/
 
   contagemClientes.textContent = clientes.length;
 
