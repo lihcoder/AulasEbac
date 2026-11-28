@@ -81,9 +81,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .floating-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; background: var(--color-white); border: 1px solid rgb(32 29 53 / 5%); border-radius: 1rem; box-shadow: var(--shadow-soft); }
 .floating-card--top { top: 14%; left: -5%; }
 .floating-card--bottom { right: -4%; bottom: 13%; }
-.floating-card__text strong, .floating-card__text small { display: block; }
-.floating-card__text strong { font-size: 0.78rem; }
-.floating-card__text small { color: var(--color-muted); font-size: 0.68rem; }
+.floating-card__text .floating-card__title, .floating-card__text .floating-card__caption { display: block; }
+.floating-card__text .floating-card__title { font-size: 0.78rem; }
+.floating-card__text .floating-card__caption { color: var(--color-muted); font-size: 0.68rem; }
 .floating-card__icon { color: var(--color-purple); font-size: 1.8rem; }
 .floating-card__number { color: var(--color-purple); font: 700 1.7rem var(--font-heading); }
 .hero__orbit { position: absolute; z-index: 0; width: 4rem; aspect-ratio: 1; border: 1px solid rgb(120 87 232 / 40%); border-radius: 50%; }
@@ -198,11 +198,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .navigation__cta { display: inline-flex; margin-top: 0.5rem; padding: 0.75rem 1rem; }
   .hero__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; }
   .hero__content { max-width: 42rem; }
-  .hero__visual { width: min(100%, 34rem); margin-inline: auto; }
+  .hero__visual, .about__visual { width: min(100%, 34rem); margin-inline: auto; }
   .hero__image-content { aspect-ratio: 1.15; }
   .hero__footer { flex-wrap: wrap; justify-content: center; text-align: center; }
   .hero__footer-item--wide { flex-basis: 100%; }
-  .about__visual { width: min(100%, 34rem); margin-inline: auto; }
   .about__image-content { aspect-ratio: 1.2; }
   .about__badge { right: -0.5rem; }
   .section-intro { align-items: start; flex-direction: column; }
@@ -219,8 +218,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .floating-card { padding: 0.65rem 0.75rem; }
   .floating-card--top { left: -0.25rem; }
   .floating-card--bottom { right: -0.25rem; }
-  .floating-card__text strong { font-size: 0.68rem; }
-  .floating-card__text small { font-size: 0.6rem; }
+  .floating-card__text .floating-card__title { font-size: 0.68rem; }
+  .floating-card__text .floating-card__caption { font-size: 0.6rem; }
   .floating-card__number { font-size: 1.35rem; }
   .about-values { grid-template-columns: 1fr; gap: 1rem; }
   .about-values__item { display: grid; grid-template-columns: 2rem 1fr; }
